@@ -12,6 +12,22 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+// Add header to prevent CORS errors
+app.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header(
+		'Access-Control-Allow-Headers',
+		'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+	);
+	if (req.method === 'OPTIONS') {
+		res.header(
+			'Access-Control-Allow-Methods',
+			'PUT, POST, PATCH, DELETE, GET'
+		);
+		return res.STATUS(200).JSON({});
+	}
+});
+
 // API Routes
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
