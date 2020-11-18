@@ -12,3 +12,4 @@ ___
   - Using MongoDB
 		- Logic required for using a database
 		- Process of connecting database to the API
+		- Usage of mongoose
