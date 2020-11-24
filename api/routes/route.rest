@@ -1,0 +1,28 @@
+GET http://localhost:3000/products
+
+###
+
+GET http://localhost:3000/orders
+
+###
+
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+	"name": "product",
+	"price": "19.99"
+}
+
+###
+
+GET http://localhost:3000/products/5fbd499f80a05f5b79202875
+
+###
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+{
+	"productId": "5fbd499f80a05f5b79202875",
+	"quantity": "5"
+}

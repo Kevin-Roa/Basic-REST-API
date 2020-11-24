@@ -4,7 +4,6 @@
   "description": "A Node.js RESTful API made using a tutorial series by Academind.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
   "author": "Kevin Roa",
@@ -17,6 +16,8 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6"
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.0"
   }
 }

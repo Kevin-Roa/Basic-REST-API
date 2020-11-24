@@ -9,7 +9,6 @@ router.get('/', (req, res, next) => {
 	.select('name price _id')
 	.exec()
 	.then(docs => {
-		// console.log(docs);
 		const response = {
 			count: docs.length,
 			products: docs.map(doc => {
@@ -21,9 +20,9 @@ router.get('/', (req, res, next) => {
 						type: 'GET',
 						url: 'http://localhost:3000/products/' + doc._id
 					}
-				}
+				};
 			})
-		}
+		};
 		if (docs.length >= 0)
 			res.status(200).json(response);
 		else
@@ -72,7 +71,7 @@ router.get('/:productId', (req, res, next) => {
 		.exec()
 		.then(doc => {
 			console.log(doc);
-			if (doc)
+			if (doc) {
 				res.status(200).json({
 					product: doc,
 					request: {
@@ -81,8 +80,10 @@ router.get('/:productId', (req, res, next) => {
 						url: 'http://localhost:3000/products'
 					}
 				});
-			else
+			}
+			else {
 				res.status(404).json({message: 'No valid entry found for provided ID.'});
+			}
 		})
 		.catch(err => {
 			console.log(err);
@@ -116,7 +117,7 @@ router.patch('/:productId', (req, res, next) => {
 });
 
 router.delete('/:productId', (req, res, next) => {
-	const id = req.params.productId
+	const id = req.params.productId;
 	Product.remove({_id: id})
 		.exec()
 		.then(result => {
