@@ -4,11 +4,12 @@ const Product = require('../models/product');
 
 exports.products_get_all = (req, res, next) => {
 	Product.find()
-		.select('name price _id, productImage')
+		// .select('name price _id, productImage userData')
 		.exec()
 		.then((docs) => {
 			const response = {
 				count: docs.length,
+				userata: req.userData,
 				products: docs.map((doc) => {
 					return {
 						name: doc.name,

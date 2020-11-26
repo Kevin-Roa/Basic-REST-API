@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const checkAuth = require('../middleware/check-auth');
-const uploadFile = require('../middleware/upload-file');
+const checkAuth = require('../middleware/auth');
+const { upload } = require('../middleware/upload-file');
 
 const ProductController = require('../controllers/products');
 
@@ -12,20 +12,23 @@ router.get('/:productId', ProductController.products_get_product);
 
 router.post(
 	'/',
-	checkAuth,
-	uploadFile.upload.single('productImage'),
+	checkAuth.check_token,
+	checkAuth.check_role(checkAuth.ROLE.ADMIN),
+	upload.single('productImage'),
 	ProductController.products_create_product
 );
 
 router.patch(
 	'/:productId',
-	checkAuth,
+	checkAuth.check_token,
+	checkAuth.check_role(checkAuth.ROLE.ADMIN),
 	ProductController.products_update_product
 );
 
 router.delete(
 	'/:productId',
-	checkAuth,
+	checkAuth.check_token,
+	checkAuth.check_role(checkAuth.ROLE.ADMIN),
 	ProductController.products_delete_product
 );
 
