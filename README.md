@@ -33,6 +33,6 @@
   - send { "email": "(email@email.com)", "password": "(pass)"} as the body
   - copy the token it returns
 - Place the auth token in the Authorization section of the request headers with "Bearer " in front
-  1. ex: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Q1QHR...
-  2. This token lasts 1hr before needing to login again
+  - ex: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Q1QHR...
+  - This token lasts 1hr before needing to login again
 - Now you may make requests to any of the routes
