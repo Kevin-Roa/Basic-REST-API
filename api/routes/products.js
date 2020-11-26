@@ -5,6 +5,7 @@ const multer = require('multer');
 
 const Product = require('../models/product');
 
+// Setup file uploading/downloading
 // Set file destination and name scheme
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {

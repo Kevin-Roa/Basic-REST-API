@@ -8,11 +8,13 @@ const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+const userRoutes = require('./api/routes/user');
 
 // Connect to MongoDB
 mongoose.connect(process.env.DATABASE_URL, {
 	useNewUrlParser: true,
-	useUnifiedTopology: true
+	useUnifiedTopology: true,
+	useCreateIndex: true
 });
 mongoose.Promise = global.Promise;
 mongoose.connection.once('open', () => console.log('Connected to database'));
@@ -44,6 +46,7 @@ app.use((req, res, next) => {
 // API Routes
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
+app.use('/user', userRoutes);
 
 // Handle errors
 app.use((req, res, next) => {
