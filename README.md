@@ -12,6 +12,9 @@
   - Useage of express
   - Basic error handling
   - File upload/download
+- User signup/login system
+  - Password encryption using bcrypt
+  - Authentication + auth tokens using jwt
 - Using MongoDB
   - Logic required for using a database
   - Process of connecting database to the API
