@@ -14,7 +14,7 @@
   - File upload/download
 - User signup/login system
   - Password encryption using bcrypt
-  - Authentication + auth tokens using jwt
+  - Token based authentication using jwt
 - Using MongoDB
   - Logic required for using a database
   - Process of connecting database to the API
