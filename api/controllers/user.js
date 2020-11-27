@@ -8,6 +8,7 @@ const User = require('../models/user');
 const { ROLE } = require('../models/role');
 const user = require('../models/user');
 
+// temporary for testing
 exports.user_get_all = (req, res, next) => {
 	User.find()
 		.select('_id email role')
@@ -106,6 +107,7 @@ exports.user_login = (req, res, next) => {
 		});
 };
 
+// temporary for testing
 exports.user_update = (req, res, next) => {
 	const id = req.params.userId;
 	const updateOps = {};
@@ -114,12 +116,6 @@ exports.user_update = (req, res, next) => {
 		// temporary solution for testing
 		if (ops.propName !== 'role') {
 			updateOps[ops.propName] = ops.value;
-		} else {
-			if (ops.value === 'admin') {
-				updateOps['role'] = ROLE.ADMIN;
-			} else {
-				updateOps['role'] = ROLE.USER;
-			}
 		}
 	}
 	User.updateOne({ _id: id }, { $set: updateOps })
@@ -155,6 +151,49 @@ exports.user_delete = (req, res, next) => {
 				error: err
 			});
 		});
+};
+
+exports.user_signup_admin = (req, res, next) => {
+	if (req.body.adminPassword === process.env.ADMIN_PASS) {
+		// Search DB for email to see if it already exists
+		User.find({ email: req.body.email })
+			.exec()
+			.then((user) => {
+				// If email exists return error
+				if (user.length >= 1) {
+					return res.status(409).json({ message: 'Email already in use' });
+				} else {
+					// Create hash for encrypted password
+					bcrypt.hash(req.body.password, 10, (err, hash) => {
+						if (err) {
+							return response.status(500).json({
+								error: err
+							});
+						} else {
+							// Create user if successfully created password hash
+							const user = new User({
+								_id: new mongoose.Types.ObjectId(),
+								email: req.body.email,
+								password: hash,
+								role: ROLE.ADMIN
+							});
+							user
+								.save()
+								.then((result) => {
+									console.log(result);
+									res.status(201).json({ message: 'Admin user Created' });
+								})
+								.catch((err) => {
+									console.log(err);
+									res.status(500).json({ error: err });
+								});
+						}
+					});
+				}
+			});
+	} else {
+		return res.status(401).json({ message: 'Auth failed' });
+	}
 };
 
 function generateToken(user) {

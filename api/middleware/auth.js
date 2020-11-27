@@ -9,14 +9,14 @@ function check_token(req, res, next) {
 		req.userData = decoded;
 		next();
 	} catch (error) {
-		return res.status(401).json({ message: 'Authentication failed' });
+		return res.status(401).json({ message: 'Auth failed' });
 	}
 }
 
 function check_role(role) {
 	return (req, res, next) => {
 		if (req.userData.role !== role) {
-			return res.status(401).json({ message: 'Authentication failed' });
+			return res.status(401).json({ message: 'Auth failed' });
 		}
 		next();
 	};

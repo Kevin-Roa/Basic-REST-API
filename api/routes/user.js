@@ -14,6 +14,8 @@ router.get(
 
 router.post('/signup', UserController.user_signup);
 
+router.post('/adminsignup', UserController.user_signup_admin);
+
 router.post('/login', UserController.user_login);
 
 router.delete('/:userId', checkAuth.check_token, UserController.user_delete);
