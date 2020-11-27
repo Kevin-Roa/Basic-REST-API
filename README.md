@@ -19,8 +19,13 @@
   - Logic required for using a database
   - Process of connecting database to the API
   - Usage of mongoose
+- Using Firebase
+  - Creating Firebase project
+  - Using Firebase Functions to deploy the API
+  - Serverless approach
 
 ## How to Use
+
 - Clone the repo
 - Run npm install
 - Create a .env file in the main directory and enter your MongoDB url and JWT key
