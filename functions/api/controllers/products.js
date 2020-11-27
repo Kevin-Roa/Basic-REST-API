@@ -14,7 +14,7 @@ exports.products_get_all = (req, res, next) => {
 					return {
 						name: doc.name,
 						price: doc.price,
-						productImage: doc.productImage,
+						// productImage: doc.productImage,
 						_id: doc._id,
 						request: {
 							type: 'GET',
@@ -39,8 +39,8 @@ exports.products_create_product = (req, res, next) => {
 	const product = new Product({
 		_id: new mongoose.Types.ObjectId(),
 		name: req.body.name,
-		price: req.body.price,
-		productImage: req.file.path
+		price: req.body.price
+		// productImage: req.file.path
 	});
 	product
 		.save()
@@ -51,7 +51,7 @@ exports.products_create_product = (req, res, next) => {
 				createdProduct: {
 					name: result.name,
 					price: result.price,
-					productImage: result.productImage,
+					// productImage: result.productImage,
 					_id: result._id,
 					request: {
 						type: 'GET',

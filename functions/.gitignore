@@ -105,6 +105,4 @@ dist
 
 .env
 
-uploads/*
-
 .prettierignore
