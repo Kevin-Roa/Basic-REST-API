@@ -23,3 +23,14 @@
   - Creating Firebase project
   - Using Firebase Functions to deploy the API
   - Serverless approach
+
+## Technologies Used
+
+- Node.js
+- Express
+- Body-parser
+- MongoDB
+- Mongoose
+- Bcrypt
+- JsonWebToken
+- Firebase Functions
